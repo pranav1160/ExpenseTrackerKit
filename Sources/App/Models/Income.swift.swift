@@ -28,6 +28,10 @@ final class Income: Model, @unchecked Sendable {
     @Parent(key: "account_id")
     var account: Account
     
+    // Date of the invoice (optional)
+    @OptionalField(key: "invoice_date")
+    var invoiceDate: Date?
+    
     // Currency used for the income (e.g., USD, EUR)
     @Field(key: "currency")
     var currency: String
@@ -56,7 +60,8 @@ final class Income: Model, @unchecked Sendable {
         date: Date,
         accountID: UUID,
         categoryID: UUID,
-        invoice: String? = nil
+        invoice: String? = nil,
+        invoiceDate: Date? = nil
     ) {
         self.id = id
         self.description = description
@@ -66,5 +71,6 @@ final class Income: Model, @unchecked Sendable {
         self.invoice = invoice
         self.$account.id = accountID
         self.$category.id = categoryID
+        self.invoiceDate = invoiceDate
     }
 }
