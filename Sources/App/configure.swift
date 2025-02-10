@@ -18,6 +18,14 @@ public func configure(_ app: Application) async throws {
     ), as: .psql)
 
     app.migrations.add(CreateTodo())
+    app.migrations.add(CreateCategoryType())
+    app.migrations.add(CreateCategory())
+    app.migrations.add(CreateAccount())
+    app.migrations.add(CreateExpenses())
+    app.migrations.add(CreateIncome())
+    app.migrations.add(UpdateIncomeInvoiceDate())
+    
+    try app.autoMigrate().wait()
     // register routes
     try routes(app)
 }
