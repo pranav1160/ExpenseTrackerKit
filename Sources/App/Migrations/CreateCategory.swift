@@ -15,7 +15,7 @@ struct CreateCategory: AsyncMigration {
             .id()
             .field("name", .string, .required)
             .field("isArchived",.bool,.required)
-            .field("type", categoryType, .required)
+            .field("category_type", categoryType)
             .create()
     }
     

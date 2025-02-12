@@ -24,7 +24,7 @@ public func configure(_ app: Application) async throws {
     app.migrations.add(CreateExpenses())
     app.migrations.add(CreateIncome())
     app.migrations.add(UpdateIncomeInvoiceDate())
-    
+    app.migrations.add(RenameCategoryType())
     try app.autoMigrate().wait()
     // register routes
     try routes(app)

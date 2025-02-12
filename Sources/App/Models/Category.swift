@@ -6,13 +6,13 @@
 //
 import Fluent
 import struct Foundation.UUID
-
+import Vapor
 
 enum CategoryType: String, Codable {
     case income, expense
 }
 
-final class Category: Model, @unchecked Sendable {
+final class Category: Model,Content, @unchecked Sendable {
     static let schema = "categories"
     
     @ID(key: .id)

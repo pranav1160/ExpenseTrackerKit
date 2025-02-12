@@ -31,13 +31,7 @@ struct AccountsController: RouteCollection {
         return account
     }
     
-//    @Sendable
-//    func show(req: Request) async throws -> Account {
-//        guard let account = try await Account.find(req.parameters.get("id"), on: req.db) else {
-//            throw Abort(.notFound)
-//        }
-//        return account
-//    }
+
     
     @Sendable
     func update(req: Request) async throws -> Account {
@@ -46,7 +40,7 @@ struct AccountsController: RouteCollection {
         }
         let updatedAccount = try req.content.decode(Account.self)
         account.name = updatedAccount.name
-        try await account.save(on: req.db)
+        try await account.update(on: req.db)
         return account
     }
     
