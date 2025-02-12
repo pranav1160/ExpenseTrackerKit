@@ -12,13 +12,13 @@ struct CreateIncome: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("incomes")
             .id()
-            .field("categories_id", .uuid, .required, .references("categories", "id"))
-            .field("amount" , .int , .required)
-            .field("currency",.string,.required)
-            .field("description",.string)
-            .field("account_id", .uuid, .required, .references("accounts", "id"))
+            .field("categories_id", .uuid, .required, .references("categories", "id"))//
+            .field("amount" , .int , .required)//
+            .field("currency",.string,.required)//
+            .field("description",.string)//
+            .field("account_id", .uuid, .required, .references("accounts", "id"))//
             .field("invoice_number",.string)
-            .field("date_paid",.date,.required)
+            .field("date_paid",.date,.required)//
     
             .create()
     }

@@ -7,8 +7,9 @@
 
 import Fluent
 import Foundation
+import Vapor
 
-final class Expense: Model, @unchecked Sendable {
+final class Expense: Model,Content, @unchecked Sendable {
     // Define the schema name for the database table
     static let schema = "expenses"
     
@@ -21,7 +22,7 @@ final class Expense: Model, @unchecked Sendable {
     var description: String?
     
     // Relationship to the category (required)
-    @Parent(key: "category_id")
+    @Parent(key: "categories_id")
     var category: Category
     
     // Relationship to the account (required)

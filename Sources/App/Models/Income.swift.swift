@@ -7,8 +7,9 @@
 
 import Fluent
 import Foundation
+import Vapor
 
-final class Income: Model, @unchecked Sendable {
+final class Income: Model,Content, @unchecked Sendable {
     // Define the schema name for the database table
     static let schema = "incomes"
     
@@ -21,7 +22,7 @@ final class Income: Model, @unchecked Sendable {
     var description: String?
     
     // Relationship to the category (required)
-    @Parent(key: "category_id")
+    @Parent(key: "categories_id")
     var category: Category
     
     // Relationship to the account (required)
@@ -38,7 +39,7 @@ final class Income: Model, @unchecked Sendable {
     
     // Optional invoice number for the income
     @OptionalField(key: "invoice_number")
-    var invoice: String?
+    var invoiceNumber: String?
     
     // Amount of the income
     @Field(key: "amount")
@@ -46,7 +47,7 @@ final class Income: Model, @unchecked Sendable {
     
     // Date the income was paid
     @Field(key: "date_paid")
-    var date: Date
+    var date_paid: Date
     
     // Default initializer required by Fluent
     init() { }
@@ -57,18 +58,18 @@ final class Income: Model, @unchecked Sendable {
         description: String? = nil,
         currency: String,
         amount: Int,
-        date: Date,
+        date_paid: Date,
         accountID: UUID,
         categoryID: UUID,
-        invoice: String? = nil,
+        invoiceNumber: String? = nil,
         invoiceDate: Date? = nil
     ) {
         self.id = id
         self.description = description
         self.currency = currency
         self.amount = amount
-        self.date = date
-        self.invoice = invoice
+        self.date_paid = date_paid
+        self.invoiceNumber = invoiceNumber
         self.$account.id = accountID
         self.$category.id = categoryID
         self.invoiceDate = invoiceDate
